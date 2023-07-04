@@ -13,7 +13,7 @@ function App() {
   const createUser = async () => {
     console.log("creating");
 
-    await addDoc(usersCollectionRef, { name: newName, age: newAge });
+    await addDoc(usersCollectionRef, { name: newName, age: +newAge });
   };
 
   const updateUser = async (id, age) => {
@@ -21,7 +21,7 @@ function App() {
     
     
     const userDoc = doc(db, "users", id)
-    const newFields = {age:age+1}
+    const newFields = {age:+age+1}
     await updateDoc(userDoc,newFields)
   };
 
@@ -43,7 +43,7 @@ function App() {
       <input
         placeholder="Age..."
         onChange={(e) => {
-          setNewName(e.target.value);
+          setNewAge(e.target.value);
         }}
       />
       <button onClick={createUser}>Create User</button>
